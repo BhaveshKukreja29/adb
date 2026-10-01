@@ -1,5 +1,5 @@
 # set base image (host OS)
-FROM python:3.8
+FROM python:3.10-bookworm
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
@@ -12,16 +12,23 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 
 # Mongo
 RUN ln -s /bin/echo /bin/systemctl
-RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
-RUN echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-RUN apt-get -y update
+
+RUN apt-get install -y gnupg
+
+RUN curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
+    gpg --dearmor -o /usr/share/keyrings/mongodb-server-7.0.gpg
+
+RUN echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/debian bookworm/mongodb-org/7.0 main" \
+    | tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+RUN apt-get update
 RUN apt-get install -y mongodb-org
 
 # Install Yarn
 RUN apt-get install -y yarn
 
 # Install PIP
-RUN easy_install pip
+RUN python -m pip install "pip<24.1"
 
 
 ENV ENV_TYPE staging
