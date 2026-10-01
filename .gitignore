@@ -1,0 +1,4 @@
+__pycache__/
+src/app/.eslintcache
+src/db/
+src/rest/mydatabase
