@@ -1,0 +1,21 @@
+1. Docker fixes:
+- Python 3.8 → 3.10-bookworm
+- MongoDB 4.4 → 7.0
+- Updated incompatible old Python dependencies
+- Removed uWSGI (unused and incompatible with Python 3.10)
+- Downgraded pip to support legacy dependencies
+- `docker compose build` now succeeds
+
+Did not fully modernize the stack since the README doesn't require it and in general it's preferred to work with
+existing dependencies on legacy projects.
+
+2. export ADBREW_CODEBASE_PATH="{path_to_repository}/test/src" is wrong. 
+when I cloned this, it named itself adb_test, not just test. so that waws causing
+both frontend/backend containers to crash.
+
+3. Frontend stuff had to change
+Added NODE_OPTIONS=--openssl-legacy-provider to resolve Webpack 4 incompatibility under Node 18.
+Added stdin_open: true and tty: true in docker-compose.yml to prevent react-scripts start from exiting in detached mode.
+Pinned postcss-safe-parser: 4.0.2 via resolutions for ERR_PACKAGE_PATH_NOT_EXPORTED.
+ 
+4.
