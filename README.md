@@ -1,4 +1,4 @@
-# NOTE: DO NOT FORK THIS REPOSITORY. CLONE AND SETUP A STANDALONE REPOSITORY.
+## See notes.txt at root for some of the reasoning behind the changes apart from the coding. 
 
 # Adbrew Test!
 

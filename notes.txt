@@ -18,4 +18,5 @@ Added NODE_OPTIONS=--openssl-legacy-provider to resolve Webpack 4 incompatibilit
 Added stdin_open: true and tty: true in docker-compose.yml to prevent react-scripts start from exiting in detached mode.
 Pinned postcss-safe-parser: 4.0.2 via resolutions for ERR_PACKAGE_PATH_NOT_EXPORTED.
  
-4.
+4. later, instead of using one image like we have right now, we should switch to individual images
+to reduce size and build times. 

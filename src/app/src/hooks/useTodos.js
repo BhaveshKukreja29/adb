@@ -31,9 +31,8 @@ export function useTodos() {
       setSubmitting(true)
       setError(null)
       
-      const newTodo = await createTodo(description)
-      
-      setTodos((prev) => [...prev, newTodo])
+      await createTodo(description)
+      await loadTodos()
       
       return true
     } catch (err) {
