@@ -14,7 +14,7 @@ export function useTodos() {
 
       const data = await fetchTodos()
       
-      setTodos(data)
+      setTodos(Array.isArray(data) ? data : [])
     } catch (err) {
       setError(err.message)
     } finally {

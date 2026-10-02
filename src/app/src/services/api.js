@@ -1,4 +1,4 @@
-const API_base = 'http://localhost:8000/todos'
+const API_BASE = 'http://localhost:8000/todos'
 
 export async function fetchTodos() {
   const response = await fetch(API_BASE)
