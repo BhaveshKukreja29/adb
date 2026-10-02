@@ -14,7 +14,7 @@ export async function createTodo(description) {
   const response = await fetch(API_BASE, {
     method: 'POST',
     headers: {
-      'Content-type': 'applciation/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({description}),
   })

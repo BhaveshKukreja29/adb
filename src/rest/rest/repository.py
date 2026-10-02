@@ -21,6 +21,6 @@ class TodoRepository:
         result = self.collection.insert_one({'description': description})
 
         return {
-            'id': str(result[_id]),
-            'description': result.get('description')
+            'id': str(result.inserted_id),
+            'description': description
         }
